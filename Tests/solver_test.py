@@ -33,3 +33,15 @@ class SolverTest(TestCase):
                             [2, 3, 9, 8, 4, 1, 5, 6, 7]]
         solver_solution: list = solve(self.sudoku_board)
         self.assertEqual(correct_solution, solver_solution)
+
+    def test_check_value(self) -> None:
+        self.sudoku_board = [[0, 2, 0, 0, 0, 4, 3, 0, 0],
+                             [9, 2, 0, 0, 2, 0, 0, 0, 8],
+                             [0, 0, 0, 6, 0, 9, 0, 5, 0],
+                             [0, 0, 0, 0, 0, 0, 0, 0, 1],
+                             [0, 7, 2, 5, 0, 3, 6, 8, 0],
+                             [6, 0, 0, 0, 0, 0, 0, 0, 0],
+                             [0, 8, 0, 2, 0, 5, 0, 0, 0],
+                             [1, 0, 0, 0, 9, 0, 0, 0, 3],
+                             [0, 0, 9, 8, 0, 0, 0, 6, 0]]
+        self.assertEqual(False, check_value(self.sudoku_board, 4, 4, 5))

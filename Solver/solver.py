@@ -17,3 +17,24 @@ def find_empty(board: list) -> list:
 
 def solve(board: list) -> list:
     pass
+
+
+def check_value(board: list, row: int, column: int, value: int) -> bool:
+    if value in board[row]:
+        return False
+
+    for i in range(len(board) - 1):
+        if value == board[i][column]:
+            return False
+
+    x = row // 3
+    y = column // 3
+
+    for i in range(0, 2):
+        for j in range(0, 2):
+            if value == board[i + 3 * x][j + 3 * y]:
+                return False
+
+    return True
+
+
