@@ -33,7 +33,7 @@ class SolverTest(TestCase):
 
     def test_solve(self) -> None:
         solver_solution: list = solve(self.sudoku_board)
-        self.assertEqual(self.correct_solution, solver_solution)
+        self.assertEqual((True, self.correct_solution), solver_solution)
 
     def test_find_empty1(self) -> None:
         self.assertEqual(False, find_empty(self.correct_solution)[0])
