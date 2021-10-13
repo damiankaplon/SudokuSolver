@@ -1,4 +1,4 @@
-#!usr/bin/env/python3.9
+#!usr/bin/env/ python3.9
 
 __version__ = '1.0'
 __author__ = 'Damian Kaplon'
@@ -36,7 +36,7 @@ class SolverTest(TestCase):
         self.assertEqual((True, self.correct_solution), solver_solution)
 
     def test_find_empty1(self) -> None:
-        self.assertEqual(False, find_empty(self.correct_solution)[0])
+        self.assertEqual(False, find_empty(self.correct_solution))
 
     def test_find_empty2(self) -> None:
         self.assertEqual([0, 0], find_empty(self.sudoku_board))

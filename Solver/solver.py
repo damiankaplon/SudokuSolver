@@ -1,4 +1,4 @@
-#!usr/bin/env/python3.9
+#!usr/bin/env/ python3.9
 
 __version__ = '1.0'
 __author__ = 'Damian Kaplon'
@@ -15,7 +15,7 @@ def find_empty(board: list) -> list or bool:
     return False
 
 
-def solve(board: list) -> bool and list:
+def solve(board: list) -> bool or bool and list:
     empty = find_empty(board)
     if not empty:
         return True, board
