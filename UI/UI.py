@@ -5,23 +5,18 @@ from tkinter import Tk, Button
 from Solver.solver import solve
 
 
-def increment_button(event):
-    state: string = event.widget['state']
-    if state == "disabled":
-        return
-    text: string = (event.widget['text'])
-    i: int = int(text)
-    if i == 9:
-        i = 1
-    else:
-        i += 1
-    event.widget['text'] = i
-    return
-
-def solve_button(event, board: list):
-    
-    return solve(board)
-
+# def increment_button(event):
+#     state: string = event.widget['state']
+#     if state == "disabled":
+#         return
+#     text: string = (event.widget['text'])
+#     i: int = int(text)
+#     if i == 9:
+#         i = 1
+#     else:
+#         i += 1
+#     event.widget['text'] = i
+#     return
 
 class UI(Tk):
     def __init__(self, board: list = None):
@@ -48,12 +43,37 @@ class UI(Tk):
 
     def __create_menu_buttons(self) -> None:
         button = Button(self, height=3, width=5, text="Solve", bd=4)
-        button.bind("<Button-1>", solve_button(self.board))
+        button.bind("<Button-1>", self.solve_button)
         button.grid(column=7, row=10, columnspan=2)
         self.buttons.append(button)
 
     def __create_main_board_button(self, text: string, row: int, column: int, state: string = "normal") -> None:
         button = Button(self, height=3, width=5, text=text, state=state, bd=4)
-        button.bind("<Button-1>", increment_button)
+        button.bind("<Button-1>", self.increment_button)
         button.grid(column=column, row=row)
         self.buttons.append(button)
+
+    @staticmethod
+    def increment_button(event):
+        state: string = event.widget['state']
+        if state == "disabled":
+            return
+        text: string = (event.widget['text'])
+        i: int = int(text)
+        if i == 9:
+            i = 1
+        else:
+            i += 1
+        event.widget['text'] = i
+        return
+
+    def solve_button(self, event):
+        if event.widget['text'] == "Solve":
+            self.board = (solve(self.board))[1]
+            for i in range(0, 9):
+                for j in range(0, 9):
+                    button = self.buttons[9*i+j]
+                    button['text'] = self.board[i][j]
+            return
+        else:
+            return
